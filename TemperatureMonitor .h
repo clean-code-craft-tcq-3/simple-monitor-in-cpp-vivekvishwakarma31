@@ -9,7 +9,7 @@
 class TemperatureMonitor : public BatteryMonitor
 {
 public:
-    bool CheckOptimumLimit(float temperature)
+    bool IsinOptimumLimit(float temperature)
     {
         if (temperature < MINIMUMTEMPERATURE || temperature > MAXIMUMTEMPERATURE)
         {
