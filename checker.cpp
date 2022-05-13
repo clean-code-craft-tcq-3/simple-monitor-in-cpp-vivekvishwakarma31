@@ -1,12 +1,42 @@
 #include <assert.h>
 #include <iostream>
-#include "BatteryManagementSystem.h"
+#include <string>
+
+#include "TemperatureMonitor .h"
+#include "StateOfChargeMonitor.h"
+#include "ChargeRateMonitor.h"
+
 
 using namespace std;
 
+    bool isBatteryOK(float temperature, float stateofcharge, float chargerate)
+    {
+        BatteryMonitor *batteryTemperatureMonitor, *batteryStateOfChargeMonitor, *batteryChargeRateMonitor;
+        TemperatureMonitor temperatureMonitor;
+        StateOfChargeMonitor stateOfChargeMonitor;
+        ChargeRateMonitor chargeRateMonitor;
+        batteryTemperatureMonitor = &temperatureMonitor;
+        batteryStateOfChargeMonitor = &stateOfChargeMonitor;
+        batteryChargeRateMonitor = &chargeRateMonitor;
+        bool temperatureStatus = batteryTemperatureMonitor->CheckOptimumLimit(temperature);
+        bool stateOfChargeStatus = batteryStateOfChargeMonitor->CheckOptimumLimit(stateofcharge);
+        bool chargeRateStatus = batteryChargeRateMonitor->CheckOptimumLimit(chargerate);
+
+        if (temperatureStatus && stateOfChargeStatus && chargeRateStatus)
+        {
+            std::cout << "Battery Health is OK" << std::endl;
+            return true;
+        }
+        else
+        {
+            std::cout << "Battery Health is NOT OK" << std::endl;
+            return false;
+        }
+    }
+
+
 int main() {
-    BatteryManagementSystem batterymanagementsystem;
-    assert(batterymanagementsystem.BatteryisOK(25, 70, 0.7) == true);
-    assert(batterymanagementsystem.BatteryisOK(50, 85, 0) == false);
+    assert(isBatteryOK(25, 70, 0.7) == true);
+    assert(isBatteryOK(50, 85, 0) == false);
     return 0;
 }
