@@ -5,7 +5,7 @@
 class BatteryMonitor
 {
 public:
-    virtual bool CheckOptimumLimit(float) = 0;
+    virtual bool IsinOptimumLimit(float) = 0;
     virtual void DisplayStatus(std::string) = 0;
 };
 
