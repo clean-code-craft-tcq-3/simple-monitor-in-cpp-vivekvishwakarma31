@@ -18,9 +18,9 @@ using namespace std;
         batteryTemperatureMonitor = &temperatureMonitor;
         batteryStateOfChargeMonitor = &stateOfChargeMonitor;
         batteryChargeRateMonitor = &chargeRateMonitor;
-        bool temperatureStatus = batteryTemperatureMonitor->CheckOptimumLimit(temperature);
-        bool stateOfChargeStatus = batteryStateOfChargeMonitor->CheckOptimumLimit(stateofcharge);
-        bool chargeRateStatus = batteryChargeRateMonitor->CheckOptimumLimit(chargerate);
+        bool temperatureStatus = batteryTemperatureMonitor->IsinOptimumLimit(temperature);
+        bool stateOfChargeStatus = batteryStateOfChargeMonitor->IsinOptimumLimit(stateofcharge);
+        bool chargeRateStatus = batteryChargeRateMonitor->IsinOptimumLimit(chargerate);
 
         if (temperatureStatus && stateOfChargeStatus && chargeRateStatus)
         {
