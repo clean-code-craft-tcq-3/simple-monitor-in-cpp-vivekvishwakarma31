@@ -8,7 +8,7 @@
 class ChargeRateMonitor : public BatteryMonitor
 {
 public:
-    bool CheckOptimumLimit(float chargerate)
+    bool IsinOptimumLimit(float chargerate)
     {
         if (chargerate > MAXIMUMCHARGERATE)
         {
