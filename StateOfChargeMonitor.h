@@ -12,7 +12,6 @@ public:
     {
         if (stateofcharge < MINIMUMSTATEOFCHARGE || stateofcharge > MAXIMUMSTATEOFCHARGE)
         {
-            DisplayStatus("State of Charge out of range!");
             return false;
 
         }
