@@ -13,9 +13,7 @@ public:
         if (stateofcharge < MINIMUMSTATEOFCHARGE || stateofcharge > MAXIMUMSTATEOFCHARGE)
         {
             return false;
-
         }
-        else
             return true;
     }
     void DisplayStatus(std::string content)
