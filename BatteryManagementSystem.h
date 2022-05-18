@@ -1,4 +1,5 @@
-#include <assert.h>
+#ifndef BATTERYMANAGEMENTSYSTEM
+#define BATTERYMANAGEMENTSYSTEM
 #include <iostream>
 #include <string>
 
@@ -6,10 +7,10 @@
 #include "StateOfChargeMonitor.h"
 #include "ChargeRateMonitor.h"
 
-
-using namespace std;
-
-    bool isBatteryOK(float temperature, float stateofcharge, float chargerate)
+class BatteryManagementSystem
+{
+public:
+    bool BatteryisOK(float temperature, float stateofcharge, float chargerate)
     {
         BatteryMonitor *batteryTemperatureMonitor, *batteryStateOfChargeMonitor, *batteryChargeRateMonitor;
         TemperatureMonitor temperatureMonitor;
@@ -18,25 +19,26 @@ using namespace std;
         batteryTemperatureMonitor = &temperatureMonitor;
         batteryStateOfChargeMonitor = &stateOfChargeMonitor;
         batteryChargeRateMonitor = &chargeRateMonitor;
-        bool temperatureStatus = batteryTemperatureMonitor->IsinOptimumLimit(temperature);
-        bool stateOfChargeStatus = batteryStateOfChargeMonitor->IsinOptimumLimit(stateofcharge);
-        bool chargeRateStatus = batteryChargeRateMonitor->IsinOptimumLimit(chargerate);
+        bool temperatureStatus = batteryTemperatureMonitor->CheckOptimumLimit(temperature);
+        bool stateOfChargeStatus = batteryStateOfChargeMonitor->CheckOptimumLimit(stateofcharge);
+        bool chargeRateStatus = batteryChargeRateMonitor->CheckOptimumLimit(chargerate);
 
         if (temperatureStatus && stateOfChargeStatus && chargeRateStatus)
         {
-            std::cout << "Battery Health is OK" << std::endl;
+            DisplayBatteryHealthStatus("Battery Health is OK");
             return true;
         }
         else
         {
-            std::cout << "Battery Health is NOT OK" << std::endl;
+            DisplayBatteryHealthStatus("Battery Health is NOT OK!");
             return false;
         }
     }
+    void DisplayBatteryHealthStatus(std::string content)
+    {
+        std::cout << content << std::endl;
+    }
 
+};
 
-int main() {
-    assert(isBatteryOK(25, 70, 0.7) == true);
-    assert(isBatteryOK(50, 85, 0) == false);
-    return 0;
-}
+#endif
