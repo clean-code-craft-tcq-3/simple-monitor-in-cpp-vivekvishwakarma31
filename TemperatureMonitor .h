@@ -13,7 +13,7 @@ public:
     {
         if (temperature < MINIMUMTEMPERATURE || temperature > MAXIMUMTEMPERATURE)
         {
-            DisplayStatus("Temperature out of range!");
+            DisplayStatus("Temperature out of range !");
             return false;
 
         }
