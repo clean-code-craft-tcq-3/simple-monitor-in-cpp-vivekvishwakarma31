@@ -22,16 +22,7 @@ using namespace std;
         bool stateOfChargeStatus = batteryStateOfChargeMonitor->IsinOptimumLimit(stateofcharge);
         bool chargeRateStatus = batteryChargeRateMonitor->IsinOptimumLimit(chargerate);
 
-        if (temperatureStatus && stateOfChargeStatus && chargeRateStatus)
-        {
-            std::cout << "Battery Health is OK" << std::endl;
-            return true;
-        }
-        else
-        {
-            std::cout << "Battery Health is NOT OK" << std::endl;
-            return false;
-        }
+        return (temperatureStatus && stateOfChargeStatus && chargeRateStatus);
     }
 
 
