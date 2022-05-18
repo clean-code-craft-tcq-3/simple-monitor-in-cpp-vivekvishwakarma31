@@ -72,7 +72,6 @@ public:
 
     void SendAlert(LanguageID languageID, WarningLevel warningLevel)
     {
-        // declaring iterators
         map<LanguageID, vector<string>>::iterator it;
         it = warningMessages.find(languageID);
         if (it == warningMessages.end())
