@@ -12,8 +12,9 @@ public:
     {
         if (stateofcharge < MINIMUMSTATEOFCHARGE || stateofcharge > MAXIMUMSTATEOFCHARGE)
         {
+            DisplayStatus("StateOfCharge out of range !");
             return false;
-        }
+        }else
             return true;
     }
     void DisplayStatus(std::string content)
