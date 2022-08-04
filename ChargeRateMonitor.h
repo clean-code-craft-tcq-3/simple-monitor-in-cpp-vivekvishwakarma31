@@ -59,6 +59,8 @@ public:
         {
             return WarningLevel::HigherLimitBreached;
         }
+        else
+           return  WarningLevel::OutOfRange ;
 
     }
 
