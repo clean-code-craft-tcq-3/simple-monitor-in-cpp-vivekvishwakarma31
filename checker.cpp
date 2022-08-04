@@ -25,6 +25,16 @@ using namespace std;
         return (temperatureStatus && stateOfChargeStatus && chargeRateStatus);
     }
 
+ void testTemperature()
+ {
+   TemperatureMonitor temperatureMonitor;
+   assert(temperatureMonitor.checkLowerLimitBreached(0.0) == true);   
+   assert(temperatureMonitor.checkHigherLimitBreached(45.0) == true);
+   assert(temperatureMonitor.CheckLimitBreached(0.0) == WarningLevel::LowerLimitBreached);
+   assert(temperatureMonitor.CheckLimitBreached(45.0) == WarningLevel::HigherLimitBreached);
+  
+
+ }
 
 int main() {
     assert(isBatteryOK(25, 70, 0.7) == true);
