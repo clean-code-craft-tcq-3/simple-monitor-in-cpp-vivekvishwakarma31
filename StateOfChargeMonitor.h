@@ -21,16 +21,34 @@ public:
     }
     bool IsinOptimumLimit(float stateofcharge)
     {
-        if (stateofcharge < MINIMUMSTATEOFCHARGE || stateofcharge > MAXIMUMSTATEOFCHARGE)
+        WarningLevel warnLevel;
+        bool status;
+        
+        warnLevel= CheckLimitBreached(stateofcharge)
+        if (warnLevel == WarningLevel::LowerLimitBreached || warnLevel ==  WarningLevel::HigherLimitBreached)
         {
-            DisplayStatus("StateOfCharge out of range !");
-            return false;
+            status = false;
         }else
-            return true;
+            status = true;
+       DisplayStatus(warnLevel);
+       return status;
     }
-    void DisplayStatus(std::string content)
+    void DisplayStatus(WarningLevel warnLevel)
     {
-        std::cout << content << std::endl;
+        std::string msg ;
+        switch(warnLevel)
+        {
+        case  WarningLevel::LowerLimitBreached:
+              msg = "StateOfCharge Lower Limit Breached !
+              break;
+        case  WarningLevel::HigherLimitBreached:
+              msg = "StateOfCharge Higher Limit Breached !
+              break;  
+        default:
+              msg = "StateOfCharge out of Range !
+              break;  
+        }
+        std::cout << msg << std::endl;
     }
     bool checkLowerLimitBreached(float stateofcharge)
     {
