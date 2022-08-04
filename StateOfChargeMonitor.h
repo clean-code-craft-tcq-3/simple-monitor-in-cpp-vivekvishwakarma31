@@ -32,29 +32,49 @@ public:
     {
         std::cout << content << std::endl;
     }
-        WarningLevel CheckLimitBreached(float stateofcharge)
+    bool checkLowerLimitBreached(float stateofcharge)
     {
         float tollerance = getTollerance();
-
-        if ((stateofcharge >= MINIMUMSTATEOFCHARGE) && (stateofcharge <= MAXIMUMSTATEOFCHARGE + tollerance))
+        if ((stateofcharge >= MINIMUMSTATEOFCHARGE) && (stateofcharge <= MINIMUMSTATEOFCHARGE + tollerance))
+        {
+            return true;
+        }
+        else
+        return false;
+    }
+    bool checkHigherLimitBreached(float stateofcharge)
+    {
+        float tollerance = getTollerance();
+        if ((stateofcharge >= (MAXIMUMSTATEOFCHARGE - tollerance)) && (stateofcharge <= MAXIMUMSTATEOFCHARGE))
+        {
+            return true;
+        }
+        else
+         return false;
+    }
+    WarningLevel CheckLimitBreached(float stateofcharge)
+    {
+        bool LowerLimitBreached,HigherLimitBreached ;
+        LowerLimitBreached = checkLowerLimitBreached(stateofcharge);
+        HigherLimitBreached = checkHigherLimitBreached(stateofcharge);
+        if (LowerLimitBreached == true)
         {
             return WarningLevel::LowerLimitBreached;
         }
-
-        else if ((stateofcharge >= (MAXIMUMSTATEOFCHARGE - tollerance)) && (stateofcharge <= MAXIMUMSTATEOFCHARGE))
+        else if (HigherLimitBreached == true)
         {
             return WarningLevel::HigherLimitBreached;
         }
         else
         {
-          
+            return WarningLevel::OutOfRange ;
         }
 
     }
 
     float getTollerance()
     {
-        return ((TOLLERANCEPERCENTAGE*MAXIMUMTEMPERATURE) / 100);
+        return ((TOLLERANCEPERCENTAGE*MAXIMUMSTATEOFCHARGE) / 100);
     }
 
     void InitializeWarningMessages()
