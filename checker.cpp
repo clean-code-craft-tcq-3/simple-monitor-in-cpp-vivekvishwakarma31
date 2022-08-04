@@ -46,7 +46,6 @@ using namespace std;
  void testChargeRate()
  {
    ChargeRateMonitor chargeRateMonitor;
-   assert(chargeRateMonitor.checkHigherLimitBreached(0.8) == true);
    assert(chargeRateMonitor.CheckLimitBreached(0.8) == WarningLevel::HigherLimitBreached);
    assert(chargeRateMonitor.IsinOptimumLimit(0.8) == false);
  }
