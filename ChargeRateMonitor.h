@@ -21,20 +21,37 @@ public:
     }
     bool IsinOptimumLimit(float chargerate)
     {
-        if (chargerate > MAXIMUMCHARGERATE)
+        WarningLevel warnLevel;
+        bool status;
+        warnLevel= CheckLimitBreached(chargerate);
+        if (warnLevel ==  WarningLevel::HigherLimitBreached)
         {
-            DisplayStatus("Charge Rate out of range!");
-            return false;
-
+            status = false;
         }
         else
-            return true;
+            status = true;
+            
+       DisplayStatus(warnLevel);
+       return status;
     }
-    void DisplayStatus(std::string content)
+    void DisplayStatus(WarningLevel warnLevel)
     {
-        std::cout << content << std::endl;
+        std::string msg;
+        switch(warnLevel)
+        {
+        case  WarningLevel::LowerLimitBreached:
+              msg = "Charge Rate Lower Limit Breached !";
+              break;
+        case  WarningLevel::HigherLimitBreached:
+              msg = "Charge Rate Higher Limit Breached !";
+              break;  
+        default:
+              msg = "Charge Rate out of Range !";
+              break;  
+        }
+        std::cout << msg << std::endl;
     }
-        WarningLevel CheckLimitBreached(float chargerate)
+    WarningLevel CheckLimitBreached(float chargerate)
     {
         float tollerance = getTollerance();
 
@@ -47,7 +64,7 @@ public:
 
     float getTollerance()
     {
-        return ((TOLLERANCEPERCENTAGE*MAXIMUMTEMPERATURE) / 100);
+        return ((TOLLERANCEPERCENTAGE*MAXIMUMCHARGERATE) / 100);
     }
 
     void InitializeWarningMessages()
