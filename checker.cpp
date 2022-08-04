@@ -38,5 +38,6 @@ using namespace std;
 
 int main() {
     assert(isBatteryOK(25, 70, 0.7) == true);
+    testTemperature();
     return 0;
 }
