@@ -39,13 +39,13 @@ public:
         switch(warnLevel)
         {
         case  WarningLevel::LowerLimitBreached:
-              msg = "StateOfCharge Lower Limit Breached !
+              msg = "StateOfCharge Lower Limit Breached !;
               break;
         case  WarningLevel::HigherLimitBreached:
-              msg = "StateOfCharge Higher Limit Breached !
+              msg = "StateOfCharge Higher Limit Breached !;
               break;  
         default:
-              msg = "StateOfCharge out of Range !
+              msg = "StateOfCharge out of Range !;
               break;  
         }
         std::cout << msg << std::endl;
