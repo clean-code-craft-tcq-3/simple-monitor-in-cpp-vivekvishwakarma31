@@ -54,6 +54,7 @@ public:
     }
     WarningLevel CheckLimitBreached(float stateofcharge)
     {
+    /*
         bool LowerLimitBreached,HigherLimitBreached ;
         LowerLimitBreached = checkLowerLimitBreached(stateofcharge);
         HigherLimitBreached = checkHigherLimitBreached(stateofcharge);
@@ -69,6 +70,7 @@ public:
         {
             return WarningLevel::OutOfRange ;
         }
+        */
 
     }
 
