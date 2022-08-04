@@ -32,7 +32,8 @@ using namespace std;
    assert(temperatureMonitor.checkHigherLimitBreached(45.0) == true);
    assert(temperatureMonitor.CheckLimitBreached(0.0) == WarningLevel::LowerLimitBreached);
    assert(temperatureMonitor.CheckLimitBreached(45.0) == WarningLevel::HigherLimitBreached);
-  
+   assert(temperatureMonitor.IsinOptimumLimit(45.0) == false);
+
 
  }
 
