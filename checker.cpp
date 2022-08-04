@@ -28,6 +28,5 @@ using namespace std;
 
 int main() {
     assert(isBatteryOK(25, 70, 0.7) == true);
-    assert(isBatteryOK(50, 85, 0) == false);
     return 0;
 }
