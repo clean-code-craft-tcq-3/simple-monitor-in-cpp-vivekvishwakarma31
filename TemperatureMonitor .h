@@ -23,18 +23,35 @@ public:
     
     bool IsinOptimumLimit(float temperature)
     {
-        if (temperature < MINIMUMTEMPERATURE || temperature > MAXIMUMTEMPERATURE)
+        WarningLevel warnLevel;
+        bool status;
+        warnLevel= CheckLimitBreached(temperature);
+        if (warnLevel == WarningLevel::LowerLimitBreached || warnLevel ==  WarningLevel::HigherLimitBreached)
         {
-            DisplayStatus("Temperature out of range !");
-            return false;
-
+            status = false;
         }
         else
-            return true;
+            status = true;
+            
+       DisplayStatus(warnLevel);
+       return status;
     }
-    void DisplayStatus(std::string content)
+    void DisplayStatus(WarningLevel warnLevel)
     {
-        std::cout << content << std::endl;
+        std::string msg;
+        switch(warnLevel)
+        {
+        case  WarningLevel::LowerLimitBreached:
+              msg = "Temperature Lower Limit Breached !";
+              break;
+        case  WarningLevel::HigherLimitBreached:
+              msg = "Temperature Higher Limit Breached !";
+              break;  
+        default:
+              msg = "Temperature out of Range !";
+              break;  
+        }
+        std::cout << msg << std::endl;
     }
     bool checkLowerLimitBreached(float temperature)
     {
