@@ -46,7 +46,7 @@ public:
         else
         return false;
     }
-    bool checkHigherLimitBreached(float stateofcharge)
+    bool checkHigherLimitBreached(float temperature)
     {
         float tollerance = getTollerance();
         if ((temperature >= (MAXIMUMTEMPERATURE - tollerance)) && (temperature <= MAXIMUMTEMPERATURE))
