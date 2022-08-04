@@ -23,13 +23,14 @@ public:
     {
         WarningLevel warnLevel;
         bool status;
-        
-        warnLevel= CheckLimitBreached(stateofcharge)
+        warnLevel= CheckLimitBreached(stateofcharge);
         if (warnLevel == WarningLevel::LowerLimitBreached || warnLevel ==  WarningLevel::HigherLimitBreached)
         {
             status = false;
-        }else
+        }
+        else
             status = true;
+            
        DisplayStatus(warnLevel);
        return status;
     }
