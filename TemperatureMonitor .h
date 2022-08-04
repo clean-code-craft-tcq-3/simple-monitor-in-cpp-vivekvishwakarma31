@@ -36,24 +36,43 @@ public:
     {
         std::cout << content << std::endl;
     }
-        WarningLevel CheckLimitBreached(float temperature)
+    bool checkLowerLimitBreached(float temperature)
     {
         float tollerance = getTollerance();
-
-        if ((temperature >= MINIMUMTEMPERATURE) && (temperature <= MAXIMUMTEMPERATURE + tollerance))
+        if ((temperature >= MINIMUMTEMPERATURE) && (temperature <= MINIMUMTEMPERATURE + tollerance))
+        {
+            return true;
+        }
+        else
+        return false;
+    }
+    bool checkHigherLimitBreached(float stateofcharge)
+    {
+        float tollerance = getTollerance();
+        if ((temperature >= (MAXIMUMTEMPERATURE - tollerance)) && (temperature <= MAXIMUMTEMPERATURE))
+        {
+            return true;
+        }
+        else
+         return false;
+    }
+    WarningLevel CheckLimitBreached(float temperature)
+    {
+         bool LowerLimitBreached,HigherLimitBreached ;
+        LowerLimitBreached = checkLowerLimitBreached(temperature);
+        HigherLimitBreached = checkHigherLimitBreached(temperature);
+        if (LowerLimitBreached == true)
         {
             return WarningLevel::LowerLimitBreached;
         }
-
-        else if ((temperature >= (MAXIMUMTEMPERATURE - tollerance)) && (temperature <= MAXIMUMTEMPERATURE))
+        else if (HigherLimitBreached == true)
         {
             return WarningLevel::HigherLimitBreached;
         }
         else
         {
-
+            return WarningLevel::OutOfRange ;
         }
-
     }
 
     float getTollerance()
